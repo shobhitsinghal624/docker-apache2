@@ -21,6 +21,6 @@ ENV LANG C
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 
 # Expose relevant pors
-EXPOSE 80 443 8001
+EXPOSE 80
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
