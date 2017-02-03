@@ -1,9 +1,16 @@
 # Base image
 FROM ubuntu:latest
-
 MAINTAINER Shobhit Singhal <shobhitsinghal624@gmail.com>
 
-RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install required packages
+RUN DEBIAN_FRONTEND=noninteractive && \
+    apt-get update -qq && \
+    apt-get install -yqq apache2 libapache2-mod-php php php-mysqli php-gd curl javascript-common && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Enable rewrite mod in apache2
+RUN a2enmod rewrite
 
 # Environment variables from /etc/init.d/apache2
 ENV APACHE_CONFDIR /etc/apache2
@@ -20,7 +27,7 @@ ENV LANG C
 # Create relevant directories
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 
-# Expose relevant pors
+# Expose relevant ports
 EXPOSE 80
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
