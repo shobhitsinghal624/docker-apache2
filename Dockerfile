@@ -5,7 +5,7 @@ MAINTAINER Shobhit Singhal <shobhitsinghal624@gmail.com>
 # Install required packages
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update -qq && \
-    apt-get install -yqq apache2 libapache2-mod-php php php-mysqli php-gd curl javascript-common && \
+    apt-get install -yqq apache2 libapache2-mod-php php php-mysqli php-gd php-curl curl javascript-common && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
