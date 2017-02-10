@@ -9,8 +9,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Enable rewrite mod in apache2
-RUN a2enmod rewrite
+# Enable mods in apache2
+RUN a2enmod rewrite expires headers ext_filter
 
 # Environment variables from /etc/init.d/apache2
 ENV APACHE_CONFDIR /etc/apache2
